@@ -2,16 +2,7 @@ library("DBI")
 library("odbc")
 library("dbplyr")
 
-DB_BikeStores <- DBI::dbConnect(odbc::odbc(),
-                                Driver = "SQL Server",
-                                Server = "dbtedamssql.uh.ac.cr",
-                                Database = "BikeStores",
-                                UID = rstudioapi::askForPassword("Database user"),
-                                PWD = rstudioapi::askForPassword("Database password"),
-                                Port = 1433)
 
-Stores<-dbGetQuery(DB_BikeStores,"select * from [sales].[order_items]")
-View(Stores)
 
 
 DB_Northwind <- DBI::dbConnect(odbc::odbc(),
@@ -22,12 +13,33 @@ DB_Northwind <- DBI::dbConnect(odbc::odbc(),
                                PWD = rstudioapi::askForPassword("Database password"),
                                Port = 1433)
 
+
+
+Clientes<-dbGetQuery(DB_Northwind,"select * from [Customers]")
+View(Clientes)
+
+
+
 ordenes <-dbGetQuery(DB_Northwind,"select * from [orders]")
 View(ordenes)
 
 
-ggplot (data = ordenes, aes (ordenes$OrderID,ordenes$ShipCountry)) + geom_poin ()
 
-ggplot (data = ordenes, aes (ordenes$OrderDate, 
+Northwind<-dbGetQuery(DB_Northwind,"Select * from Orders")
+View(Northwind)
+
+
+
+ggplot (data = Clientes, aes (Clientes$CustomerID, Clientes$Country)) + geom_point()
+
+
+
+
+ggplot (data = ordenes, aes (ordenes$OrderDate,
                              ordenes$ShippedDate)) + geom_point ()
+
+
+
+qplot(ShipCountry, OrderDate, data = Northwind, color=ShipCountry,
+      xlab="Pais", ylab="Fecha de orden", main="Fecha de la orden por pais")
 
