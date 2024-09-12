@@ -19,7 +19,7 @@ Finanzas = data.frame(financials)
 
 View (filter (Finanzas, Sector == "Materials"))
 
-#Group by: Saber el precio máximo de cada sector de finanzias
+#Group by: Saber el precio mÃ¡ximo de cada sector de finanzias
 
 dataAgrupada = Finanzas%>%group_by(Sector)%>%
                 summarise(max(Price))
@@ -44,7 +44,7 @@ View(select(Finanzas, Symbol, Name, Sector, Price, Final.Price))
 Salarios=c(432.21,239.48,249.94,373.22,233.86,366,331.11,258.86,349.20,31.60)
 
 names(Salarios) = c ("Argentina","Bolivia","Brasil","Chile","Colombia",
-                     "Ecuador","Paraguay","Perú","Uruguay","Venezuela")
+                     "Ecuador","Paraguay","PerÃº","Uruguay","Venezuela")
 
 
 mean (Salarios)
@@ -68,6 +68,6 @@ sd (UnidadesCafe)
 quantile(UnidadesCafe, prob = c(0,0.25,0.50,0.75,1))
 
 
-
+#Nota: 95 
 
   
